@@ -22,6 +22,7 @@ while True:
     print("Accepted connection from", addr)
     content = c.recv(1024).decode()
     content = json.loads(content)
+
     label_to_enum = {
         "N": Direction.NORTH,
         "S": Direction.SOUTH,
@@ -34,7 +35,7 @@ while True:
     robot_y = robot_info["y"] * 2
     robot_direction = label_to_enum[robot_info["dir"]]
     # Initialize MazeSolver object with robot size of 20x20, bottom left corner of robot at (1,1), facing north, and whether to use a big turn or not.
-    maze_solver = MazeSolver(20, 20, robot_x, robot_y, robot_direction)
+    maze_solver = MazeSolver(40, 40, robot_x, robot_y, robot_direction)
 
     obstacles = env_data["obstacles"]
     obstacle_info = []
