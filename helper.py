@@ -17,6 +17,7 @@ def is_valid(center_x: int, center_y: int):
         center_x > 0 and center_y > 0 and center_x < WIDTH - 1 and center_y < HEIGHT - 1
     )
 
+
 def command_generator(states, obstacles):
     """
     This function takes in a list of states and generates a list of commands for the robot to follow
@@ -49,17 +50,17 @@ def command_generator(states, obstacles):
             ) or (
                 states[i].y > states[i - 1].y and states[i].direction == Direction.NORTH
             ):
-                commands.append("FW10")
+                commands.append("FW5")
             # Forward - Must be (west facing AND x value decreased) OR (south facing AND y value decreased)
             elif (
                 states[i].x < states[i - 1].x and states[i].direction == Direction.WEST
             ) or (
                 states[i].y < states[i - 1].y and states[i].direction == Direction.SOUTH
             ):
-                commands.append("FW10")
+                commands.append("FW5")
             # Backward - All other cases where the previous and current state is the same direction
             else:
-                commands.append("BW10")
+                commands.append("BW5")
 
             # If any of these states has a valid screenshot ID, then add a SP command as well to take a picture
             if states[i].screenshot_id != -1:
@@ -269,7 +270,7 @@ def command_generator(states, obstacles):
             steps = int(compressed_commands[-1][2:])
             # If steps are not 90, add 10 to the steps
             if steps != 90:
-                compressed_commands[-1] = "BW{}".format(steps + 10)
+                compressed_commands[-1] = "BW{}".format(steps + 5)
                 continue
 
         # If both commands are FW
@@ -278,7 +279,7 @@ def command_generator(states, obstacles):
             steps = int(compressed_commands[-1][2:])
             # If steps are not 90, add 10 to the steps
             if steps != 90:
-                compressed_commands[-1] = "FW{}".format(steps + 10)
+                compressed_commands[-1] = "FW{}".format(steps + 5)
                 continue
 
         # Otherwise, just add as usual

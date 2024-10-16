@@ -30,8 +30,8 @@ while True:
     }
     env_data = content["data"]
     robot_info = env_data["robot"]
-    robot_x = robot_info["x"]
-    robot_y = robot_info["y"]
+    robot_x = robot_info["x"] * 2
+    robot_y = robot_info["y"] * 2
     robot_direction = label_to_enum[robot_info["dir"]]
     # Initialize MazeSolver object with robot size of 20x20, bottom left corner of robot at (1,1), facing north, and whether to use a big turn or not.
     maze_solver = MazeSolver(20, 20, robot_x, robot_y, robot_direction)
@@ -40,9 +40,16 @@ while True:
     obstacle_info = []
     for ob in obstacles:
         print(1)
-        maze_solver.add_obstacle(ob["x"], ob["y"], label_to_enum[ob["dir"]], ob["id"])
+        maze_solver.add_obstacle(
+            ob["x"] * 2, ob["y"] * 2, label_to_enum[ob["dir"]], ob["id"]
+        )
         obstacle_info.append(
-            {"x": ob["x"], "y": ob["y"], "id": ob["id"], "d": label_to_enum[ob["dir"]]}
+            {
+                "x": ob["x"] * 2,
+                "y": ob["y"] * 2,
+                "id": ob["id"],
+                "d": label_to_enum[ob["dir"]],
+            }
         )
 
     optimal_path, distance = maze_solver.get_optimal_order_dp(retrying=False)

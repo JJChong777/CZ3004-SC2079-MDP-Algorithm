@@ -4,48 +4,48 @@ from consts import Direction
 import time
 import json
 
-# Initialize MazeSolver object with robot size of 20x20, bottom left corner of robot at (1,1), facing north, and whether to use a big turn or not.
-maze_solver = MazeSolver(20, 20, 1, 1, Direction.NORTH)
-maze_solver.add_obstacle(3, 3, Direction.NORTH, 1)
+# Initialize MazeSolver object with robot size of 20x20, center of robot at (1,1), facing north, and whether to use a big turn or not.
+maze_solver = MazeSolver(40, 40, 2, 2, Direction.NORTH)
+maze_solver.add_obstacle(6, 6, Direction.NORTH, 1)
 maze_solver.add_obstacle(
-    7,
-    7,
+    14,
+    14,
     Direction.NORTH,
     2,
 )
 maze_solver.add_obstacle(
-    11,
-    11,
+    22,
+    22,
     Direction.NORTH,
     3,
 )
 maze_solver.add_obstacle(
-    15,
-    15,
+    30,
+    30,
     Direction.NORTH,
     4,
 )
 maze_solver.add_obstacle(
-    7,
-    15,
+    14,
+    30,
     Direction.WEST,
     5,
 )
 maze_solver.add_obstacle(
-    15,
-    7,
+    30,
+    14,
     Direction.WEST,
     6,
 )
 maze_solver.add_obstacle(
-    3,
-    11,
+    6,
+    22,
     Direction.WEST,
     7,
 )
 maze_solver.add_obstacle(
-    8,
-    3,
+    16,
+    6,
     Direction.WEST,
     8,
 )
@@ -55,50 +55,50 @@ start = time.time()
 # Get shortest path
 obstacles = [
     {
-        "x": 3,
-        "y": 3,
+        "x": 6,
+        "y": 6,
         "id": 1,
         "d": 0,
     },
     {
-        "x": 7,
-        "y": 7,
+        "x": 14,
+        "y": 14,
         "id": 2,
         "d": 0,
     },
     {
-        "x": 11,
-        "y": 11,
+        "x": 22,
+        "y": 22,
         "id": 3,
         "d": 0,
     },
     {
-        "x": 15,
-        "y": 15,
+        "x": 30,
+        "y": 30,
         "id": 4,
         "d": 0,
     },
     {
-        "x": 7,
-        "y": 15,
+        "x": 14,
+        "y": 30,
         "id": 5,
         "d": 0,
     },
     {
-        "x": 15,
-        "y": 7,
+        "x": 30,
+        "y": 14,
         "id": 6,
         "d": 0,
     },
     {
-        "x": 3,
-        "y": 11,
+        "x": 6,
+        "y": 22,
         "id": 7,
         "d": 0,
     },
     {
-        "x": 8,
-        "y": 3,
+        "x": 16,
+        "y": 6,
         "id": 8,
         "d": 4,
     },

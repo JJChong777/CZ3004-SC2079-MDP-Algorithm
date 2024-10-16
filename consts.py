@@ -28,8 +28,8 @@ TURN_FACTOR = 1
 
 EXPANDED_CELL = 1  # for both agent and obstacles
 
-WIDTH = 20
-HEIGHT = 20
+WIDTH = 40
+HEIGHT = 40
 
 ITERATIONS = 2000
 TURN_RADIUS = 1

@@ -85,6 +85,7 @@ class Obstacle(CellState):
             and self.direction == other.direction
         )
 
+    # change to multiply by 4 in case we want the robot to be further away
     def get_view_state(self, retrying) -> List[CellState]:
         """Constructs the list of CellStates from which the robot can view the symbol on the obstacle
 
