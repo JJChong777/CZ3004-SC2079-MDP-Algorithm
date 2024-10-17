@@ -111,13 +111,38 @@ print(f"Optimal path: {optimal_path}")
 # Based on the shortest path, generate commands for the robot
 commands = command_generator(optimal_path, obstacles)
 print(f"Commands: {commands}")
-# Get the starting location and add it to path_results
-path_results = [optimal_path[0].get_dict()]
+commands_string = ",".join(commands)
+enum_to_label = {0: "N", 2: "E", 4: "S", 6: "W"}
+path_results = [
+    (
+        optimal_path[0].get_dict()["x"],
+        optimal_path[0].get_dict()["y"],
+        enum_to_label[optimal_path[0].get_dict()["d"]],
+    )
+]
+# Process each command individually and append the location the robot should be after executing that command to path_results
+i = 0
+for command in commands:
+    if command.startswith("SP"):
+        continue
+    if command.startswith("FIN"):
+        continue
+    elif command.startswith("FW"):
+        i += int(command[2:]) // 10
+    elif command.startswith("BW"):
+        i += int(command[2:]) // 10
+    else:
+        i += 1
+    # print(i)
+    path_results.append(
+        (
+            optimal_path[i].get_dict()["x"],
+            optimal_path[i].get_dict()["y"],
+            enum_to_label[optimal_path[i].get_dict()["d"]],
+        )
+    )
+# print(path_results)
+# print(f"len(commands): {len(commands)} vs len(path_results): {len(path_results)}")
 
-result_json_string = json.dumps(
-    {
-        "data": {"distance": distance, "commands": commands},
-        "error": None,
-    }
-)
-print(f"result json string: {result_json_string} type: {type(result_json_string)}")
+data = json.dumps({"commands_string": commands_string, "coords": path_results})
+print(f"result json string: {data} type: {type(data)}")
