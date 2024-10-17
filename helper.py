@@ -39,7 +39,7 @@ def command_generator(states, obstacles):
 
     # Iterate through each state in the list of states
     for i in range(1, len(states)):
-        steps = ""
+        steps = "90"
 
         # If previous state and current state are the same direction,
         if states[i].direction == states[i - 1].direction:
