@@ -17,19 +17,19 @@ from algo.tsp import solve_tsp_dynamic_programming
 coord_change_wrt_turn = {
     "FL": [
         3 * TURN_RADIUS,
-        1 * TURN_RADIUS,
+        2 * TURN_RADIUS,
     ],
     "FR": [
-        4 * TURN_RADIUS,
-        1 * TURN_RADIUS,
+        3 * TURN_RADIUS,
+        2 * TURN_RADIUS,
     ],
     "BL": [
+        2 * TURN_RADIUS,
         3 * TURN_RADIUS,
-        1 * TURN_RADIUS,
     ],
     "BR": [
         3 * TURN_RADIUS,
-        1 * TURN_RADIUS,
+        2 * TURN_RADIUS,
     ],
 }
 
