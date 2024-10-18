@@ -92,5 +92,5 @@ while True:
     data = json.dumps({"commands_string": commands_string, "coords": coords_string})
     print(data)
     c.send(data.encode())
-
+    c.close()
 s.close()
