@@ -20,7 +20,7 @@ coord_change_wrt_turn = {
         2 * TURN_RADIUS,
     ],
     "FR": [
-        3 * TURN_RADIUS,
+        4 * TURN_RADIUS,
         2 * TURN_RADIUS,
     ],
     "BL": [
