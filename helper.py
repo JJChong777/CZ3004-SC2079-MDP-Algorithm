@@ -17,6 +17,7 @@ def is_valid(center_x: int, center_y: int):
         center_x > 0 and center_y > 0 and center_x < WIDTH - 1 and center_y < HEIGHT - 1
     )
 
+
 def command_generator(states, obstacles):
     """
     This function takes in a list of states and generates a list of commands for the robot to follow
@@ -257,7 +258,7 @@ def command_generator(states, obstacles):
                     commands.append(f"SP{states[i].screenshot_id}")
 
     # Final command is the stop command (FIN)
-    commands.append("FIN")
+    # commands.append("FIN")
 
     # Compress commands if there are consecutive forward or backward commands
     compressed_commands = [commands[0]]
