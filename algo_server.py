@@ -20,25 +20,25 @@ while True:
         c.close()
         break
     print("Accepted connection from", addr)
-    # content = c.recv(1024).decode()
-    # content = json.loads(content)
-    content = {
-        "type": "START_TASK",
-        "data": {
-            "task": "EXPLORATION",
-            "robot": {"id": "R", "x": 1, "y": 1, "dir": "N"},
-            "obstacles": [
-                {"id": "1", "x": 4, "y": 4, "dir": "N"},
-                {"id": "2", "x": 7, "y": 7, "dir": "N"},
-                {"id": "3", "x": 11, "y": 11, "dir": "N"},
-                {"id": "4", "x": 15, "y": 15, "dir": "N"},
-                {"id": "5", "x": 7, "y": 15, "dir": "N"},
-                {"id": "6", "x": 15, "y": 7, "dir": "N"},
-                {"id": "7", "x": 3, "y": 11, "dir": "N"},
-                {"id": "8", "x": 8, "y": 3, "dir": "S"},
-            ],
-        },
-    }
+    content = c.recv(1024).decode()
+    content = json.loads(content)
+    # content = {
+    #     "type": "START_TASK",
+    #     "data": {
+    #         "task": "EXPLORATION",
+    #         "robot": {"id": "R", "x": 1, "y": 1, "dir": "N"},
+    #         "obstacles": [
+    #             {"id": "1", "x": 4, "y": 4, "dir": "N"},
+    #             {"id": "2", "x": 7, "y": 7, "dir": "N"},
+    #             {"id": "3", "x": 11, "y": 11, "dir": "N"},
+    #             {"id": "4", "x": 15, "y": 15, "dir": "N"},
+    #             {"id": "5", "x": 7, "y": 15, "dir": "N"},
+    #             {"id": "6", "x": 15, "y": 7, "dir": "N"},
+    #             {"id": "7", "x": 3, "y": 11, "dir": "N"},
+    #             {"id": "8", "x": 8, "y": 3, "dir": "S"},
+    #         ],
+    #     },
+    # }
     label_to_enum = {
         "N": Direction.NORTH,
         "S": Direction.SOUTH,
@@ -71,6 +71,13 @@ while True:
     i = 0
     for command in commands:
         if command.startswith("SP"):
+            path_results.append(
+                (
+                    optimal_path[i].get_dict()["x"],
+                    optimal_path[i].get_dict()["y"],
+                    enum_to_label[optimal_path[i].get_dict()["d"]],
+                )
+            )
             continue
         if command.startswith("FIN"):
             continue
@@ -88,11 +95,9 @@ while True:
             )
         )
 
-    print(commands)
-    print(path_results)
     commands_string = ",".join(commands)
     data = json.dumps({"commands_string": commands_string, "coords": path_results})
-
+    print(data)
     c.send(data.encode())
-    c.close()
-    s.close()
+
+s.close()
