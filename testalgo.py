@@ -113,13 +113,7 @@ commands = command_generator(optimal_path, obstacles)
 print(f"Commands: {commands}")
 commands_string = ",".join(commands)
 enum_to_label = {0: "N", 2: "E", 4: "S", 6: "W"}
-path_results = [
-    (
-        optimal_path[0].get_dict()["x"],
-        optimal_path[0].get_dict()["y"],
-        enum_to_label[optimal_path[0].get_dict()["d"]],
-    )
-]
+path_results = []
 # Process each command individually and append the location the robot should be after executing that command to path_results
 i = 0
 for command in commands:
@@ -135,11 +129,16 @@ for command in commands:
         i += 1
     # print(i)
     path_results.append(
-        (
-            optimal_path[i].get_dict()["x"],
-            optimal_path[i].get_dict()["y"],
-            enum_to_label[optimal_path[i].get_dict()["d"]],
-        )
+        {
+            "type": "COORDINATES",
+            "data": {
+                "robot": {
+                    "x": optimal_path[i].get_dict()["x"],
+                    "y": optimal_path[i].get_dict()["y"],
+                    "dir": enum_to_label[optimal_path[i].get_dict()["d"]],
+                }
+            },
+        }
     )
 # print(path_results)
 # print(f"len(commands): {len(commands)} vs len(path_results): {len(path_results)}")
