@@ -87,8 +87,9 @@ while True:
             f"{optimal_path[i].get_dict()["x"]},{optimal_path[i].get_dict()["y"]},{enum_to_label[optimal_path[i].get_dict()["d"]]}"
         )
 
-    commands_string = ";".join(commands)
-    data = json.dumps({"commands_string": commands_string, "coords": path_results})
+    commands_string = ",".join(commands)
+    coords_string = ";".join(path_results)
+    data = json.dumps({"commands_string": commands_string, "coords": coords_string})
     print(data)
     c.send(data.encode())
 
