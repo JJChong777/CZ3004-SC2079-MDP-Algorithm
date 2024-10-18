@@ -52,11 +52,7 @@ i = 0
 for command in commands:
     if command.startswith("SP"):
         path_results.append(
-            (
-                optimal_path[i].get_dict()["x"],
-                optimal_path[i].get_dict()["y"],
-                enum_to_label[optimal_path[i].get_dict()["d"]],
-            )
+            f"{optimal_path[i].get_dict()["x"]},{optimal_path[i].get_dict()["y"]},{enum_to_label[optimal_path[i].get_dict()["d"]]}"
         )
         continue
     elif command.startswith("FW"):
@@ -67,16 +63,10 @@ for command in commands:
         i += 1
     # print(i)
     path_results.append(
-        (
-            optimal_path[i].get_dict()["x"],
-            optimal_path[i].get_dict()["y"],
-            enum_to_label[optimal_path[i].get_dict()["d"]],
-        )
+        f"{optimal_path[i].get_dict()["x"]},{optimal_path[i].get_dict()["y"]},{enum_to_label[optimal_path[i].get_dict()["d"]]}"
     )
-# print(path_results)
-# print(f"len(commands): {len(commands)} vs len(path_results): {len(path_results)}")
-print(f"len(commands): {len(commands)}")
-print(f"len(coords): {len(path_results)}")
-print(f"length equal: {len(commands) == len(path_results)}")
-# data = json.dumps({"commands_string": commands_string, "coords": path_results})
-# print(f"result json string: {data} type: {type(data)}")
+path_results = ";".join(path_results)
+print(path_results)
+# print(f"len(commands): {len(commands)}")
+# print(f"len(coords): {len(path_results)}")
+# print(f"length equal: {len(commands) == len(path_results)}")

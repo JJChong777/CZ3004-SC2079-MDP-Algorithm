@@ -72,11 +72,7 @@ while True:
     for command in commands:
         if command.startswith("SP"):
             path_results.append(
-                (
-                    optimal_path[i].get_dict()["x"],
-                    optimal_path[i].get_dict()["y"],
-                    enum_to_label[optimal_path[i].get_dict()["d"]],
-                )
+                f"{optimal_path[i].get_dict()["x"]},{optimal_path[i].get_dict()["y"]},{enum_to_label[optimal_path[i].get_dict()["d"]]}"
             )
             continue
         if command.startswith("FIN"):
@@ -88,14 +84,10 @@ while True:
         else:
             i += 1
         path_results.append(
-            (
-                optimal_path[i].get_dict()["x"],
-                optimal_path[i].get_dict()["y"],
-                enum_to_label[optimal_path[i].get_dict()["d"]],
-            )
+            f"{optimal_path[i].get_dict()["x"]},{optimal_path[i].get_dict()["y"]},{enum_to_label[optimal_path[i].get_dict()["d"]]}"
         )
 
-    commands_string = ",".join(commands)
+    commands_string = ";".join(commands)
     data = json.dumps({"commands_string": commands_string, "coords": path_results})
     print(data)
     c.send(data.encode())
